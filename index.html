@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fa3 50%, #ffb3c6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Pacifico', cursive;
+            font-weight: 400;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-family: 'Caveat', cursive;
+            font-weight: 400;
+        }
+
+        .flowers-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .css-flower {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        .css-flower::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .css-flower::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 30px;
+            background: #228b22;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 25px;
+            height: 35px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: center bottom;
+        }
+
+        .petal:nth-child(1) {
+            background: #ff6b6b;
+            transform: translate(-50%, -100%) rotate(0deg);
+        }
+
+        .petal:nth-child(2) {
+            background: #ff8e8e;
+            transform: translate(-50%, -100%) rotate(72deg);
+        }
+
+        .petal:nth-child(3) {
+            background: #ffb3b3;
+            transform: translate(-50%, -100%) rotate(144deg);
+        }
+
+        .petal:nth-child(4) {
+            background: #ffd1d1;
+            transform: translate(-50%, -100%) rotate(216deg);
+        }
+
+        .petal:nth-child(5) {
+            background: #ffe0e0;
+            transform: translate(-50%, -100%) rotate(288deg);
+        }
+
+        .flower-1 .petal:nth-child(1) { background: #ff6b6b; }
+        .flower-1 .petal:nth-child(2) { background: #ff8e8e; }
+        .flower-1 .petal:nth-child(3) { background: #ffb3b3; }
+        .flower-1 .petal:nth-child(4) { background: #ffd1d1; }
+        .flower-1 .petal:nth-child(5) { background: #ffe0e0; }
+
+        .flower-2 .petal:nth-child(1) { background: #9b59b6; }
+        .flower-2 .petal:nth-child(2) { background: #a569bd; }
+        .flower-2 .petal:nth-child(3) { background: #bb8fce; }
+        .flower-2 .petal:nth-child(4) { background: #d2b4de; }
+        .flower-2 .petal:nth-child(5) { background: #e8daef; }
+
+        .flower-3 .petal:nth-child(1) { background: #f39c12; }
+        .flower-3 .petal:nth-child(2) { background: #f5b041; }
+        .flower-3 .petal:nth-child(3) { background: #f7dc6f; }
+        .flower-3 .petal:nth-child(4) { background: #f9e79f; }
+        .flower-3 .petal:nth-child(5) { background: #fcf3cf; }
+
+        .flower-4 .petal:nth-child(1) { background: #e74c3c; }
+        .flower-4 .petal:nth-child(2) { background: #ec7063; }
+        .flower-4 .petal:nth-child(3) { background: #f1948a; }
+        .flower-4 .petal:nth-child(4) { background: #f5b7b1; }
+        .flower-4 .petal:nth-child(5) { background: #fadbd8; }
+
+        .flower-5 .petal:nth-child(1) { background: #e91e63; }
+        .flower-5 .petal:nth-child(2) { background: #ec407a; }
+        .flower-5 .petal:nth-child(3) { background: #f06292; }
+        .flower-5 .petal:nth-child(4) { background: #f48fb1; }
+        .flower-5 .petal:nth-child(5) { background: #f8bbd0; }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .bee {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            left: 20%;
+            animation: fly 4s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        @media (min-width: 381px) {
+            .bee {
+                top: 30%;
+                left: 20%;
+                animation: fly 4s ease-in-out infinite;
+            }
+        }
+
+        .bee-body {
+            position: absolute;
+            width: 25px;
+            height: 18px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                inset 0 -3px 0 #ff8c00,
+                inset 0 -6px 0 #ffd700,
+                inset 0 -9px 0 #ff8c00,
+                inset 0 -12px 0 #ffd700;
+        }
+
+        .bee-head {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+        }
+
+        .bee-eye {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            top: 3px;
+            left: 2px;
+        }
+
+        .bee-antenna {
+            position: absolute;
+            width: 8px;
+            height: 2px;
+            background: #333;
+            top: 2px;
+            left: -3px;
+            transform: rotate(-45deg);
+        }
+
+        .bee-antenna::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #333;
+            border-radius: 50%;
+            left: -6px;
+            top: -1px;
+        }
+
+        .bee-wing {
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(200, 200, 200, 0.5);
+            border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+            top: 5px;
+            left: 12px;
+            animation: flap 0.1s infinite;
+        }
+
+        .bee-wing::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+            top: 2px;
+            left: 3px;
+        }
+
+        .bee-stinger {
+            position: absolute;
+            width: 6px;
+            height: 8px;
+            background: #333;
+            border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+            top: 50%;
+            right: -2px;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        @keyframes fly {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% { 
+                transform: translate(100px, -30px) rotate(10deg);
+            }
+            50% { 
+                transform: translate(200px, 20px) rotate(-5deg);
+            }
+            75% { 
+                transform: translate(100px, 50px) rotate(5deg);
+            }
+        }
+
+        @keyframes flap {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.3); }
+        }
+
+        .message {
+            color: #555;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 25px 0;
+            font-family: 'Caveat', cursive;
+            font-weight: 400;
+        }
+
+        .heart {
+            color: #ff1493;
+            font-size: 3rem;
+            animation: pulse 1s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @media (max-width: 550px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 30px 20px; }
+            .css-flower { width: 50px; height: 50px; }
+            .subtitle { font-size: 1rem; }
+        }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 1.7rem; }
+            .card { padding: 25px 15px; border-radius: 25px; }
+            .css-flower { width: 45px; height: 45px; }
+            .flowers-container { gap: 10px; }
+            .message { font-size: 1.1rem; }
+            .heart { font-size: 2.5rem; }
+            .bee { width: 35px; height: 35px; }
+        }
+
+        @media (max-width: 350px) {
+            h1 { font-size: 1.5rem; }
+            .css-flower { width: 40px; height: 40px; }
+            .message { font-size: 1rem; }
+            .heart { font-size: 2rem; }
+            .bee { width: 30px; height: 30px; }
+        }
+
+        /* Отключаем анимацию пчелы на очень маленьких экранах */
+        @media (max-width: 380px) {
+            .bee {
+                animation: none;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .bee-body { width: 20px; height: 14px; }
+            .bee-head { width: 10px; height: 10px; }
+            .bee-wing { width: 12px; height: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="bee">
+            <div class="bee-antenna"></div>
+            <div class="bee-head">
+                <div class="bee-eye"></div>
+            </div>
+            <div class="bee-body"></div>
+            <div class="bee-wing"></div>
+            <div class="bee-stinger"></div>
+        </div>
+
+        <div class="content">
+            <h1>С 8 Марта!</h1>
+            <p class="subtitle">Международный женский день</p>
+
+            <div class="flowers-container">
+                <div class="css-flower flower-1">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="css-flower flower-2">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="css-flower flower-3">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="css-flower flower-4">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="css-flower flower-5">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+            </div>
+
+            <p class="message">
+                Пусть этот день принесёт<br>
+                радость, счастье и любовь!<br>
+                Цветы, улыбки и тепло<br>
+                подарят праздничное настроение!
+            </p>
+
+            <div class="heart">❤️</div>
+        </div>
+    </div>
+</body>
+</html>
